@@ -130,10 +130,10 @@ class AuthPersonalArea(WebPage):
     # Заголовок/условия поля ввода данных для аутетификации
     field_input_h1 = WebElement(xpath='//span[contains(text(), "Введите")]')
     # Поле ввода данных для аутетификации
-    field_input = WebElement(xpath='//input[@placeholder="Введите свой код скидки, телефон или эл.почту"]')  # (css='input#_inputnamecode_37')
+    field_input = WebElement(xpath='//input[@placeholder="Введите свой код скидки, телефон или эл.почту"]')
     # Заголовок над кнопкой "войти":Найдем вас в Лабиринте или зарегистрируем
     button_auth_h1 = WebElement(xpath='//span[@class="full-input__msg js-msg" and @data-default-text='
-                                   '"Найдем вас в Лабиринте или зарегистрируем"]')
+                                      '"Найдем вас в Лабиринте или зарегистрируем"]')
     # Кнопка "Войти"
     button_auth = WebElement(css_selector='input#g-recap-0-btn')
     # Ссылка/кнопка:Другие способы входа
@@ -175,13 +175,3 @@ class AuthPersonalArea(WebPage):
     # Временно поле где содержится емайл пользователя
     window_my_data_email = WebElement(xpath='//div[@class="edit-email-container  form-input"]')
     general_search = WebElement(css_selector='input#search-field')
-
-
-
-
-
-
-
-
-
-
