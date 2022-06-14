@@ -4,7 +4,7 @@
 import time
 import pytest
 #from pages.labirint import MainPage
-from pages.labirint_header_menu import MainPage
+from pages.labirint import MainPage
 res = None
 def test_nav_menu_click_book(web_browser):
 
