@@ -4,8 +4,7 @@
 # --maxfail=2 -  остановить  после 2 упавших
 # pytest -x --pdb   # вызывает отладчик при первом падении и завершает тестовую сессию
 # pytest --pdb --maxfail=3  # вызывает отладчик для первых трех падений
-import selenium
-from selenium.webdriver.common.keys import Keys
+
 import time
 import pytest
 from settings import AuthPersonalAreaSettings
@@ -133,18 +132,14 @@ def test_auth_personal_area_email_code(web_browser, auth_data, code_data):
     window_x = per_auth.window_login_register.get_text()
     assert per_auth.window_log_reg_h1.get_text() in window_x
     per_auth.field_input.send_keys(auth_data)
-    assert per_auth.button_auth.is_clickable() == True
+    assert per_auth.button_auth.is_clickable() is True
     per_auth.button_auth.click()
-    #with open("namefile3.txt", 'w', encoding="utf=8") as myFile:
-    #    myFile.write(per_auth.button_auth_h1.get_text())
     per_auth.wait_load()
-    assert per_auth.window_enter_code.is_visible() == True
+    assert per_auth.window_enter_code.is_visible() is True
     per_auth.field_input_code.send_keys(code_data)
     if len(code_data) == 12 or len(code_data) == 14:
-        assert per_auth.button_auth_code.is_clickable() == True
+        assert per_auth.button_auth_code.is_clickable() is True
         per_auth.button_auth_code.click()
-    # with open("namefile.txt", 'w', encoding="utf=8") as myFile:
-    #    myFile.write(per_auth.field_input_code.get_text())
         per_auth.wait_load()
         if per_auth.window_well_come.is_visible() is True:
             assert 'Здравствуйте' and 'Ваш код авторизации' in per_auth.window_well_come.get_text()
@@ -156,14 +151,15 @@ def test_auth_personal_area_email_code(web_browser, auth_data, code_data):
             per_auth.wait_load()
             assert per_auth.page_auth_my_data_email.get_attribute('value') == auth_data
         else:
-            assert 'Сервис недоступен' or 'Введенного кода не существует' in per_auth.button_auth_h1.get_text(), 'Или какое то другое сообщение'
+            assert 'Сервис недоступен' or 'Введенного кода не существует' in per_auth.button_auth_h1.get_text(), \
+                'Или какое то другое сообщение'
     else:
         assert per_auth.button_auth.is_clickable() is False,  "Проблема с определением НЕКЛИКАБЕЛЬНЫЙ"
         per_auth.wait_load()
         time.sleep(2)
 
 
-@pytest.mark.parametrize("auth_data", [
+@pytest.mark.parametrize("code_data", [
     auth_data_value.valid_code,
     auth_data_value.valid_code_v2,
     auth_data_value.invalid_code_v1,
@@ -188,7 +184,8 @@ def test_auth_personal_area_email_code(web_browser, auth_data, code_data):
     auth_data_value.invalid_code_v8_text,
     auth_data_value.invalid_code_v9_text
 ])
-def test_auth_personal_area_code(web_browser, auth_data):
+def test_auth_personal_area_code(web_browser, code_data):
+
     """Проверка входа/аунтетификации в личны кабинет, позитивные тесты
     вход по:код-скидки"""
     per_auth = AuthPersonalArea(web_browser)
@@ -198,12 +195,23 @@ def test_auth_personal_area_code(web_browser, auth_data):
     per_auth.wait_load()
     window_x = per_auth.window_login_register.get_text()
     assert per_auth.window_log_reg_h1.get_text() in window_x
-    per_auth.field_input.send_keys(auth_data)
-
-
-    per_auth.button_auth.click()
-
-    per_auth.wait_load()
+    per_auth.field_input.send_keys(code_data)
+    if len(code_data) == 12 or len(code_data) == 14:
+        assert per_auth.button_auth.is_clickable() is True
+        per_auth.button_auth.click()
+        per_auth.wait_load()
+        if per_auth.window_well_come.is_visible() is True:
+            assert 'Здравствуйте' and 'Ваш код авторизации' in per_auth.window_well_come.get_text()
+            per_auth.wait_load()
+            per_auth.per_area_icon.click()
+            per_auth.wait_load()
+            assert "Личный кабинет" in per_auth.page_auth_h1.get_text(), "Заголовок личчного кабинета отсутствует"
+        else:
+            assert 'Сервис недоступен' or 'Введенного кода не существует' in per_auth.button_auth_h1.get_text(),\
+                'Или какое то другое сообщение'
+    else:
+        assert 'Сервис недоступен' or 'Введенного кода не существует' in per_auth.button_auth_h1.get_text(),\
+            'Или какое то другое сообщение'
 
 
 
