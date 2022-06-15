@@ -1,7 +1,7 @@
 #  3) Run tests:
 #     python -m pytest -v --driver Chrome --driver-path ~/chrome tests/*
 
-import time
+# import time
 import pytest
 from pages.labirint import MainPage, GeneralSearch
 res = None
@@ -50,11 +50,9 @@ def test_general_search_pozitiv(web_browser, search_input):
         assert 'площадь' in card_product.lower()
 
 
-pytest.mark.parametrize("search_input_empty", ['', '          '],
-                        ids=['поиск пустое поле (тестирование нуля)',
-                             'поиск пустое поле пробелы_10 (тестирование нуля)'])
-
-
+@pytest.mark.parametrize("search_input_empty", ['', '          '],
+                         ids=['поиск пустое поле (тестирование нуля)',
+                              'поиск пустое поле пробелы_10 (тестирование нуля)'])
 def test_general_search_empty(web_browser, search_input_empty):
     """Тестирование пустой строки и пробелов(тестирование нуля)"""
 
