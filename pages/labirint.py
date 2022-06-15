@@ -175,3 +175,41 @@ class AuthPersonalArea(WebPage):
     # Временно поле где содержится емайл пользователя
     window_my_data_email = WebElement(xpath='//div[@class="edit-email-container  form-input"]')
     general_search = WebElement(css_selector='input#search-field')
+
+
+class CardProduct(WebPage):
+    """Здель содержатся локаторы для тестов карт товара"""
+    def __init__(self, web_driver, url=''):
+        if not url:
+            url = os.getenv("MAIN_URL") or 'https://www.labirint.ru/'
+
+        super().__init__(web_driver, url)
+
+    # Полуить текущий url страницы
+    get_url = WebPage.get_current_url
+    # Ждать загрузки страницы
+    wait_load = WebPage.wait_page_loaded
+    # Ссылка книги
+    nav_book = WebElement(xpath='//li[@data-toggle="header-genres"]')
+    # Раздел Книги
+    nav_book_end_url = 'https://www.labirint.ru/books/'
+    nav_book_end = WebElement(xpath='//h1[@class="genre-name"]')
+    # Заголовок списка товара
+    product_list_h1 = WebElement(xpath='//div[@class="catalog-title"]')
+    # Кол-во найденных товаров
+    product_amount = WebElement(xpath='//span[@class="navisort-part navisort-head navisort-part-9"]')
+    # Карточки товара (первые 5 не совсем в списке)
+    product_card = ManyWebElements(xpath='//div[@class="card-column'
+                                         ' card-column_gutter col-xs-6 col-sm-3 col-md-1-5 col-xl-2"]')
+    # Все карточки на странице (пока WebElement, для поиска всех использовать ManyWebElements)
+    all_product_card_page = WebElement(xpath='//div[@class="product need-watch watched"]')
+    # Кнопки пагинации
+    pag_num = WebElement(xpath='//a[@class="pagination-number__text"]')
+    # Список книпок пагинации
+    pag_list = ManyWebElements(xpath='//a[@class="pagination-number__text"]')
+    # Кнопка "Следующая" для перехода на след страницу ссылка №1
+    pag_next = WebElement(xpath='//a[@title="Следующая"]')
+    # Кнопка "Следующая" для перехода на след страницу ссылка №2
+    pag_next_2 = WebElement(xpath='//div[@class="pagination-next"]')
+
+
