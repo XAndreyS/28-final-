@@ -20,7 +20,8 @@ Files
 
 [pages/elements.py](pages/elements.py) содержит вспомогательный класс для определения веб-элементов на веб-страницах.
 
-[tests/](tests/test_general_searh.py, test_header_menu.py, test_per_area.py) содержат Web UI тесты для Лабиринт (https://labirint.ru/)
+[tests/](tests/test_general_searh.py, test_header_menu.py, test_per_area.py, test_card_product)
+ содержат Web UI тесты для Лабиринт (https://labirint.ru/)
 
 
 How To Run Tests

@@ -8,7 +8,7 @@
 from pages.labirint import CardProduct
 
 
-def test_amount_product(web_browser):
+def test_amount_product_book(web_browser):
     """Проверяем кол-во карточчек продукта в разделе Книги"""
 
     prod_card = CardProduct(web_browser)
