@@ -34,7 +34,9 @@ test_per_area.py - проверка Личного кабинета(
 ключа-кода, вход используя код-ключ
 )
 test_card_product - проверка количества карточек товара на сайте
-Подробнее про проверки см _https://docs.google.com/document/d/1ZKM_i8HUbqVC75ZVe15vxBol_cG5VryAaGYNORmcTzE/edit?usp=sharing_ 
+Подробнее про проверки см:
+ _https://docs.google.com/document/d/1ZKM_i8HUbqVC75ZVe15vxBol_cG5VryAaGYNORmcTzE/edit?usp=sharing_ 
+
 
 How To Run Tests
 ----------------
